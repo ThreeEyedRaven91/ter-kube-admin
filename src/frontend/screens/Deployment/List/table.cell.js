@@ -4,11 +4,11 @@ import { Progress } from 'reactstrap';
 import classNames from 'classnames';
 import { mapToCssModules } from 'reactstrap/lib/utils';
 
-export default class PodListCell extends Component {
+export default class DeploymentListCell extends Component {
   render() {
     const {
       className, cssModule, header, mainText, smallText,
-      color, value, children, variant, pod, ...attributes
+      color, value, children, variant, deployment, ...attributes
     } = this.props;
 
     // demo purposes only
@@ -35,27 +35,24 @@ export default class PodListCell extends Component {
           </div>
         </td>
         <td>
-          <div>{pod.metadata && pod.metadata.name}</div>
+          <div>{deployment.metadata && deployment.metadata.name}</div>
           <div className="small text-muted">
-            <span>{pod.status && pod.status.phase}</span> | Created At: {pod.metadata && pod.metadata.creationTimestamp}
+            Created At: {deployment.metadata && deployment.metadata.creationTimestamp}
           </div>
         </td>
         <td className="text-center">
-          {pod.metadata && pod.metadata.namespace}
-        </td>
-        <td className="text-center">
-          {pod.spec && pod.spec.nodeName}
+          {deployment.metadata && deployment.metadata.namespace}
         </td>
         <td>
           <div className="clearfix">
             <div className="float-left">
-              <strong>50%</strong>
+              <strong>Replica</strong>
             </div>
             <div className="float-right">
-              <small className="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+              <small className="text-muted">{deployment.spec.replicas} / {deployment.status.readyReplicas}</small>
             </div>
           </div>
-          <Progress className="progress-xs" color="success" value="50" />
+          <Progress className="progress-xs" color="success" value={deployment.status.readyReplicas * 100 / deployment.spec.replicas} />
         </td>
         <td className="text-center">
           <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
@@ -69,9 +66,9 @@ export default class PodListCell extends Component {
   }
 }
 
-PodListCell.propTypes = {
-  pod: PropTypes.object.isRequired,
+DeploymentListCell.propTypes = {
+  deployment: PropTypes.object.isRequired,
 };
 
-PodListCell.defaultProps = {
+DeploymentListCell.defaultProps = {
 };

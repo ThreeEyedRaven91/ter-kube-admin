@@ -1,7 +1,7 @@
 import shell from 'shelljs';
 import lodash from 'lodash';
 
-const kubectl = (cmd, longOptions = {}, shortOptions = {}, configPath) => {
+const kubectl = (cmd, longOptions = {}, shortOptions = {}) => {
   longOptions.output = 'json';
 
   const longOptionString = Object.keys(longOptions).reduce((total, key) => {
@@ -23,9 +23,6 @@ const kubectl = (cmd, longOptions = {}, shortOptions = {}, configPath) => {
   console.log(queryString);
 
   shell.config.silent = true;
-  if (configPath) {
-    shell.env['KUBECONFIG'] = configPath;
-  }
   return shell.exec(queryString);
 }
 

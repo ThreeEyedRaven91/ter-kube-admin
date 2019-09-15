@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const get = gql`
-  query getPods($namespace: String, $allNamespaces: Boolean, $dashboard: String) {
-    pods(namespace: $namespace, allNamespaces: $allNamespaces, dashboard: $dashboard) {
+  query getDeployment($namespace: String, $dashboard: String) {
+    deployments(namespace: $namespace, dashboard: $dashboard) {
       id
       metadata {
         name
@@ -10,10 +10,10 @@ const get = gql`
         creationTimestamp
       }
       spec {
-        nodeName
+        replicas
       }
       status {
-        phase
+        readyReplicas
       }
     }
   }

@@ -3,13 +3,16 @@ import fs from 'fs';
 import path from 'path';
 
 const get = () => {
-  const homedir = os.homedir();
-  const configPath = path.join(homedir, '.ter/kube-admin/config.json');
-  console.log(configPath);
+  try {
+    const homedir = os.homedir();
+    const configPath = path.join(homedir, '.ter/kube-admin/config.json');
+    const dashboards = JSON.parse(fs.readFileSync(configPath));
 
-  const dashboards = JSON.parse(fs.readFileSync(configPath));
-
-  return dashboards;
+    return dashboards;
+  }
+  catch (error) {
+    return [];
+  }
 };
 
 const getPathByTitle = (title) => {

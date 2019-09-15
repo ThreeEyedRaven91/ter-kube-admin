@@ -1,14 +1,11 @@
-const resolver = {
-  Spec: {
+import Kube from "../../kube-cmd";
 
-  }
+const resolver = {
+
 };
 
 const schema = `
-type Spec {
-  nodeName: String
-  replicas: Int
-}
+
 `;
 
 export default {

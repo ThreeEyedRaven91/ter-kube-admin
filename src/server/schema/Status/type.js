@@ -5,9 +5,9 @@ const resolver = {
 };
 
 const schema = `
-type Spec {
-  nodeName: String
-  replicas: Int
+type Status {
+  phase: String
+  readyReplicas: Int
 }
 `;
 

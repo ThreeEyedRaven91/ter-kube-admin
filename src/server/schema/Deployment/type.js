@@ -1,5 +1,5 @@
 const resolver = {
-  Pod: {
+  Deployment: {
     id: (namespace) => {
       return namespace.metadata.uid;
     },
@@ -7,7 +7,7 @@ const resolver = {
 };
 
 const schema = `
-type Pod {
+type Deployment {
   id: String
   metadata: Metadata
   spec: Spec

@@ -1,9 +1,11 @@
 import { gql } from 'apollo-server-express';
 import Dashboard from './Dashboard';
+import Deployment from './Deployment';
 import Metadata from './Metadata';
 import Namespace from './Namespace';
 import Pod from './Pod';
 import Spec from './Spec';
+import Status from './Status';
 
 const mergeResolvers = (models) => {
   const query = models.reduce((total, current) => ({
@@ -58,8 +60,10 @@ const merge = (models) => ({
 
 export default merge([
   Dashboard,
+  Deployment,
   Metadata,
   Namespace,
   Pod,
   Spec,
+  Status,
 ]);

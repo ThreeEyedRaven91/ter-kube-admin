@@ -3,7 +3,7 @@ import {Table} from 'reactstrap';
 import PropTypes from 'prop-types';
 import LoadingOverlay from 'react-loading-overlay';
 import API from '../../../apis';
-import PodListCell from './table.cell';
+import DeploymentListCell from './table.cell';
 import {BaseComponent} from "../../../components";
 import Config from "../../../configs";
 
@@ -25,12 +25,12 @@ export default class NamespaceListTable extends BaseComponent {
   }
 
   fetchData() {
-    const { namespace, allNamespaces, dashboard } = Config.ConfigFilter.getFilters();
+    const { namespace, dashboard } = Config.ConfigFilter.getFilters();
     this.setState({ loading: true });
-    API.pod.get({ namespace, allNamespaces, dashboard })
+    API.deployment.get({ namespace, dashboard })
       .then(({ data }) => {
-        const { pods } = data;
-        this.setState({ data: pods });
+        const { deployments } = data;
+        this.setState({ data: deployments });
       })
       .catch((error) => console.log(error))
       .finally(() => this.setState({ loading: false, loaded: true }));
@@ -48,16 +48,15 @@ export default class NamespaceListTable extends BaseComponent {
             <th className="text-center"><i className="icon-people"></i></th>
             <th>Pod</th>
             <th className="text-center">Namespace</th>
-            <th className="text-center">Node</th>
             <th>Usage</th>
             <th className="text-center">Payment Method</th>
             <th>Activity</th>
           </tr>
           </thead>
           <tbody>
-          {data && data.map(pod => (
-            <PodListCell
-              pod={pod}
+          {data && data.map(deployment => (
+            <DeploymentListCell
+              deployment={deployment}
             />
           ))}
           </tbody>

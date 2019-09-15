@@ -1,0 +1,79 @@
+{
+  "name": "kube-admin-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "@coreui/coreui": "^2.1.12",
+    "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.3.1",
+    "@coreui/icons": "^0.4.1",
+    "@coreui/react": "^2.5.2",
+    "@ter-form/form": "^0.1.12",
+    "apollo-boost": "^0.4.4",
+    "apollo-server-express": "^2.9.3",
+    "body-parser": "^1.19.0",
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "express": "latest",
+    "flag-icon-css": "^3.3.0",
+    "font-awesome": "^4.7.0",
+    "graphql-tag": "^2.10.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-loading-overlay": "^1.0.1",
+    "react-qr-svg": "^2.2.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "react-toastify": "^5.3.2",
+    "reactstrap": "^8.0.1",
+    "shelljs": "^0.8.3",
+    "simple-line-icons": "^2.4.1",
+    "table-parser": "^1.0.1",
+    "ter-localization": "^0.7.5"
+  },
+  "scripts": {
+    "start-server": "yarn build-server && node dist/server/index.js",
+    "start-frontend": "react-scripts start",
+    "build-server": "./node_modules/.bin/babel --presets=@babel/env,@babel/react --plugins=@babel/plugin-proposal-class-properties -d dist/server/ src/server --copy-files",
+    "build-frontend": "react-scripts build && mkdir -p dist && rm -rf dist/client && mv build dist/client",
+    "build": "yarn build-frontend && yarn build-server",
+    "start": "yarn build && node dist/server/index.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch": "nodemon --exec 'yarn start'"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "nodemon": "^1.19.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "dist/*",
+      "node_modules/*",
+      "build/*"
+    ],
+    "delay": "2500"
+  }
+}

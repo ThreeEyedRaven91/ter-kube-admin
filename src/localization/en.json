@@ -1,0 +1,9 @@
+{
+  "general": {
+    "add": "add",
+    "loading": "Loading"
+  },
+  "namespace": {
+    "title": "Namespace"
+  }
+}

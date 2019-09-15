@@ -1,7 +1,9 @@
 {
-  "name": "kube-admin-client",
+  "name": "ter-kube-admin",
   "version": "0.1.0",
-  "private": true,
+  "bin": {
+    "ter-kube-admin": "./dist/server/index.js"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
     "@coreui/coreui": "^2.1.12",
